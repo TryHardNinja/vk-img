@@ -28,12 +28,12 @@ export default function () {
 	function changeImage(action) {
 		let src;
 		if (action === 'prev') {
-			if (counter === 0) counter = model.img.length;
-			counter--;
+			if (counter === 0) counter = model.img.length - 1;
+			else counter--;
 		}
 		else {
 			if (counter === model.img.length - 1) counter = 0;
-			counter++;
+			else counter++;
 		}
 		const waitImgSize = new Promise( resolve => {
 			src = model.img[counter];
