@@ -1,0 +1,65 @@
+mixin b-photo()
+	+b.b-photo&attributes(attributes)
+		+e.overlay
+		+e.container
+			+e.image-container
+				+e.image-wrap
+					+e('button').prev
+					+e.image-wrapper
+						+e('img').image(src="https://pp.userapi.com/c837324/v837324288/5a633/O7a67IPfTaQ.jpg")
+					+e('button').next
+				+e.image-footer
+					+e('a').album-name(href="#")
+						| User name photo
+					+e.counter-photo
+						| 1 of 6
+					+e.photo-action
+						+e.share
+							| Share
+						+e.devider
+						+e.more
+							| More
+			+e.sidebar
+				+e.author
+					+e.author-avatar
+					+e.author-info
+						+e('a').author-name(href="#") Author name
+						+e.publication-date 9 Jan 2018
+				+e.like-container
+					+e('button').like
+						+e.like-icon.fa.fa-heart
+						| Like
+
+				+e.comments
+					+e.comments-window
+						// +e.no-comments
+							| Be the first to comment on this photo.
+						+e.comment
+							+e('a').comment-avatar(href="#")
+								img(src="https://pp.userapi.com/c840128/v840128727/51e28/vtG-kSWN8Sw.jpg")
+							+e.comment-container
+								+e('a').comment-name(href="#") Svetlana Borshinskovskiska
+								+e.comment-text Lorem ipsum chetotam test test testes tes
+								+e.comment-date Just now
+							+e('button').comment-like.fa.fa-heart
+							+e.comment-action
+								+e('button').comment-edit.fa.fa-pencil
+								+e('button').comment-delete.fa.fa-times
+
+
+				+e('form').post-box
+					+e.message
+						+e.message-avatar
+						+e('textarea').message-text
+
+					+e.submit
+						+e('label').file.fa.fa-file
+							+e('input')(type="file")
+						+e('button').cancel
+							| Cancel
+						+e('button').post(type="submit")
+							| Post
+
+
+
+		block

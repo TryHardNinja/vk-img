@@ -1,0 +1,427 @@
+.b-photo
+	display flex
+	justify-content center
+	align-items center
+	position absolute
+	height 100%
+	width 100%
+	padding 3vh 5vw
+	z-index 100
+	font-size 13px
+	font-family -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
+	line-height 1.154
+	font-weight 400
+	-webkit-font-smoothing subpixel-antialiased
+
+	&__overlay
+		height 100%
+		width 100%
+		position fixed
+		top 0
+		left 0
+		right 0
+		bottom 0
+		z-index 1
+		background-color rgba(0, 0, 0, .5)
+
+	&__container
+		max-height 100%
+		display flex
+		justify-content center
+		align-items stretch
+		position relative
+		z-index 2
+		cursor default
+		border-radius 6px 4px 4px 4px
+		overflow hidden
+
+	&__image-container
+
+		position relative
+		display flex
+		flex-direction column
+		align-items center
+		justify-content center
+		flex-basis 70%
+		flex-shrink 2
+		flex-grow 1
+		background #1e1e1e
+
+
+	&__image-wrap
+		position relative
+		margin-top auto
+		display flex
+		align-items center
+		justify-content center
+		overflow hidden
+		height 100%
+		max-width 100%
+		max-height 100%
+
+
+		&:hover
+			.b-photo__prev, .b-photo__next
+				&:before, &:after
+					opacity 0.3
+
+
+	&__image-wrapper
+		flex-grow 1
+		max-width 100%
+		max-height 100%
+		position relative
+		display flex
+		align-items center
+		justify-content center
+
+	&__image
+		display flex
+		margin 0 auto
+		height auto
+		width auto
+		max-width 100%
+		max-height 100%
+		object-fit contain
+
+
+	&__image-footer
+		width 100%
+		margin-top auto
+		display flex
+		justify-content space-between
+		padding 17px 23px 14px
+		min-height 18px
+
+	&__prev, &__next
+		display flex
+		align-items center
+		position absolute
+		background none
+		border none
+		height 100%
+		cursor pointer
+		z-index 1
+
+		&:before, &:after
+			display inline-block
+			content ''
+			height 32px
+			width 20px
+			background-image url(https://www.vk.com/images/icons/pv_layer_controls.png)
+			position absolute;
+			opacity 0
+			transition opacity 300ms ease
+
+		&:before
+			left 20px
+			background-position 0px -25px
+
+		&:after
+			right 20px
+			background-position 0px -63px
+
+	&__prev
+		justify-content flex-start
+		left 0
+		width 30%
+		&:after
+			content none
+
+		&:hover
+			&:before
+				opacity 1 !important
+	&__next
+		justify-content flex-end
+		right 0
+		width 70%
+		&:before
+			content none
+		&:hover
+			&:after
+				opacity 1 !important
+
+	&__sidebar
+		display flex
+		flex-direction column
+		background-color white
+		min-width 300px
+		flex-shrink 0
+		border-radius 0 4px 4px 0
+
+		@media (max-width 700px)
+			display none
+
+		@media (max-height 500px)
+			display none
+
+	&__album-name
+		margin-right 10px
+		color #ccc
+		text-decoration none
+		cursor pointer
+
+		&:hover
+			text-decoration underline
+
+	&__counter-photo
+		margin-right auto
+		color #ccc
+		opacity 0.6
+
+	&__photo-action
+		margin-left auto
+
+	&__photo-action
+		color #ccc
+		opacity 0.6
+
+	&__share, &__more, &__devider
+		display inline-block
+
+	&__devider
+		margin 0 5px
+		opacity: 0.6;
+		&:before
+			display inline-block
+			content "\00b7"
+			color #939393
+
+	&__author
+		display flex
+		justify-content flex-start
+		align-items stretch
+		padding 13px 20px 10px 15px
+		background-color #fafbfc
+		border-bottom 1px solid #e7e8ec
+		border-radius 0 4px 0 0
+
+	&__author-avatar
+		width 40px
+		height 40px
+		border-radius 50%
+		background-image url('https://pp.userapi.com/c630322/v630322080/2ffd/nWi6lNIgobA.jpg')
+		background-repeat no-repeat
+		background-size cover
+
+	&__author-info
+		display flex
+		flex-direction column
+		justify-content space-between
+		padding 3px 0 0 10px
+
+	&__author-name
+		font-weight 500
+		color #2a5885
+		text-decoration none
+		cursor pointer
+
+		&:hover
+			text-decoration underline
+
+	&__publication-date
+		color #939699
+
+	&__like-container
+		padding 25px 20px
+
+	&__like
+		background none
+		border none
+		cursor pointer
+		color #2a5885
+
+	&__like-icon
+		margin-right 6px
+		opacity .5
+
+	&__comments
+		display flex
+		flex-grow 1
+		border-top 1px solid #e7e8ec
+		padding-right 3px
+
+	&__comments-window
+		position relative
+		display flex
+		flex-direction column
+		flex-grow 1
+		overflow-y auto
+		padding 0px 20px 0px 15px
+
+		&::-webkit-scrollbar-track
+			background-color none
+			border none
+
+		&::-webkit-scrollbar
+			background-color none
+			border none
+			width 6px
+
+		&::-webkit-scrollbar-thumb
+			transition background-color 200ms linear, width 150ms linear
+			background #dae1e8
+			border-radius: 3px
+			&:hover
+				background-color #bec8d3;
+
+
+
+
+
+
+	&__no-comments
+		display block
+		background url("http://vk.com/images/icons/first_comment.png") no-repeat
+		background-position 50% 20px
+		padding 90px 30px 30px 30px
+		color #939393
+		text-align center
+
+	&__post-box
+		position relative
+		border-radius 0 0 4px 4px
+		border-top 1px solid #e7e8ec
+
+	&__message
+		display flex
+		justify-content space-between
+		flex-grow 1
+		padding 13px 20px 10px 15px
+
+	&__message-avatar
+		width 28px
+		height 28px
+		border-radius 50%
+		transform-style preserve-3d
+		transition transform 0.3s ease
+		backface-visibility: hidden
+		transform rotateY(0deg)
+		background-image url('https://pp.userapi.com/c630322/v630322080/2ffd/nWi6lNIgobA.jpg')
+
+	&__message-text
+		background none
+		border none
+		height auto
+		flex-grow 1
+		min-height 72px
+		max-height none
+		padding-right 36px
+		padding-left 14px
+		padding-top 6px
+		padding-bottom 16px
+		overflow hidden
+	// resize none
+
+	&__submit
+		display flex
+		justify-content space-between
+		align-items center
+		background #fafbfc
+		border-top 1px solid #e7e8ec
+		padding 15px 20px
+
+	&__file
+		background none
+		border none
+		cursor pointer
+		color #2a5885
+		opacity 0.5
+		input
+			display none
+
+	&__cancel, &__post
+		border none
+		background none
+		padding 7px 16px 8px
+		border-radius 4px
+		font-size 12.5px
+
+	&__cancel
+		background-color #e5ebf1
+		color #55677d
+		margin-left auto
+
+		&:hover
+			background-color #dfe6ed
+
+	&__post
+		background-color #5181b8
+		color #fff
+		margin-left 10px
+
+	&__comment
+		display flex
+		justify-content space-between
+		align-items flex-start
+		position relative
+		flex-shrink 0
+		padding 8px 0 10px
+		border-bottom 1px solid #e7e8ec
+		&:hover
+			.b-photo__comment-action
+				visibility visible
+				opacity 1
+
+
+	&__comment-container
+		margin-left 10px
+
+	&__comment-avatar
+		height 34px
+		width 34px
+		overflow hidden
+		border-radius 50%
+		flex-shrink 0
+		text-decoration none
+		color black
+		img
+			max-width 100%
+
+	&__comment-name
+		font-weight 500
+		color #2a5885
+		text-decoration none
+		cursor pointer
+		&:hover
+			text-decoration underline
+
+
+	&__comment-date
+		margin-top 3px
+		color #939393
+
+	&__comment-like
+		align-self flex-end
+		background none
+		border none
+		cursor pointer
+		color #2a5885
+		opacity .5
+
+	&__comment-action
+		position absolute
+		right  0
+		display flex
+		justify-content space-between
+		align-items center
+		visibility hidden
+		transition visibility 100ms ease, opacity 100ms ease
+		opacity 0
+
+	&__comment-edit, &__comment-delete
+		border none
+		background none
+		cursor pointer
+		height 13px
+		width 13px
+		color #2a5885
+		opacity .5
+
+	&__comment-delete
+		margin-left 7px
+
+
+
+
+
