@@ -6,7 +6,7 @@
 
 ### Склонируй репозиторий и перейди в папку проекта
 ```
-git clone git@github.com:CSSSR/csssr-project-template.git new-project && cd new-project
+git clone git@github.com:TryHardNinja/vk-img.git new-project && cd new-project
 ```
 
 ### Установи модули
