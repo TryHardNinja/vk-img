@@ -26,8 +26,10 @@
 		background-color rgba(0, 0, 0, .5)
 
 	&__container
-		max-height 100%
-		max-width 100%
+		max-height 1080px
+		max-width 1920px
+		width 100%
+		height 100%
 		display flex
 		justify-content center
 		align-items stretch
@@ -39,16 +41,18 @@
 		overflow hidden
 
 	&__image-container
-		max-height 90vh
 		max-width 100%
+		min-height 480px
+		max-height 90vh
 		position relative
 		display flex
 		flex-direction column
 		align-items center
 		justify-content center
+		flex-basis 58%
+		flex-shrink 2
 		flex-grow 1
 		background #1e1e1e
-
 
 	&__image-wrap
 		margin-top auto
@@ -64,7 +68,6 @@
 			.b-photo__prev, .b-photo__next
 				&:before, &:after
 					opacity 0.3
-
 
 	&__image-wrapper
 		flex-grow 1
@@ -90,7 +93,6 @@
 
 		to
 			opacity: 0.2
-
 
 	&__progress
 		height 100%
@@ -125,7 +127,6 @@
 
 		&:nth-child(3)
 			animation-delay 360ms
-
 
 	&__image
 		display inline-block
@@ -195,15 +196,15 @@
 		flex-grow 1
 		flex-direction column
 		background-color white
-		min-width 280px
+		width 280px
 		flex-shrink 0
 		border-radius 0 4px 4px 0
 
-		@media (max-width 700px)
+	/*	@media (max-width 700px)
 			display none
 
 		@media (max-height 500px)
-			display none
+			display none*/
 
 	&__album-name
 		margin-right 10px
@@ -276,20 +277,31 @@
 		padding 25px 20px
 
 	&__like
+		display flex
+		align-items center
+		justify-content center
 		background none
 		border none
 		cursor pointer
 		color #2a5885
+		transition all 0.2s ease
+		opacity .5
 
 	&__like-icon
 		margin-right 6px
-		opacity .5
+
+	&__like-counter
+		margin-left 4px
+		font-weight 700
+		font-size 13px
+		font-family -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
 
 	&__comments
 		display flex
 		flex-grow 1
 		border-top 1px solid #e7e8ec
 		padding-right 3px
+		min-height 200px
 
 	&__comments-window
 		position relative
@@ -314,11 +326,6 @@
 			border-radius: 3px
 			&:hover
 				background-color #bec8d3;
-
-
-
-
-
 
 	&__no-comments
 		display block
@@ -354,12 +361,12 @@
 		border none
 		height auto
 		flex-grow 1
-		min-height 72px
+		min-height 0px
 		max-height none
 		padding-right 36px
 		padding-left 14px
 		padding-top 6px
-		padding-bottom 16px
+		padding-bottom 0px
 		overflow hidden
 	// resize none
 
@@ -370,6 +377,7 @@
 		background #fafbfc
 		border-top 1px solid #e7e8ec
 		padding 15px 20px
+		display none
 
 	&__file
 		background none
@@ -413,7 +421,6 @@
 				visibility visible
 				opacity 1
 
-
 	&__comment-container
 		width 100%
 		margin-left 10px
@@ -437,22 +444,32 @@
 		&:hover
 			text-decoration underline
 
-
 	&__comment-date
 		margin-top 3px
 		color #939393
 
 	&__comment-like
+		position relative
+		display flex
+		align-items center
+		justify-content space-between
 		align-self flex-end
 		background none
 		border none
 		cursor pointer
 		color #2a5885
 		opacity .5
+		transition all 0.2s ease
+
+	&__comment-like-count
+		margin-left 4px
+		font-weight 700
+		font-size 11.5px
+		font-family -apple-system, BlinkMacSystemFont, Roboto, Open Sans, Helvetica Neue, sans-serif
 
 	&__comment-action
 		position absolute
-		right  0
+		right 0
 		display flex
 		justify-content space-between
 		align-items center
