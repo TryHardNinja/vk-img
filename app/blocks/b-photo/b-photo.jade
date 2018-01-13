@@ -4,6 +4,10 @@ mixin b-photo()
 		+e.container
 			+e.image-container
 				+e.image-wrap
+					+e.progress
+						+e.progress-dot
+						+e.progress-dot
+						+e.progress-dot
 					+e('button').prev
 					+e.image-wrapper
 						+e('img').image(src="https://pp.userapi.com/c837324/v837324288/5a633/O7a67IPfTaQ.jpg")
@@ -42,6 +46,7 @@ mixin b-photo()
 								+e.comment-text Lorem ipsum chetotam test test testes tes
 								+e.comment-date Just now
 							+e('button').comment-like.fa.fa-heart
+								+e.comment-like-count
 							+e.comment-action
 								+e('button').comment-edit.fa.fa-pencil
 								+e('button').comment-delete.fa.fa-times

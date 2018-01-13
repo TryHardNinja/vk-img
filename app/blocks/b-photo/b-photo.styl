@@ -3,7 +3,8 @@
 	justify-content center
 	align-items center
 	position absolute
-	height 100%
+	min-width 320px
+	min-height 100%
 	width 100%
 	padding 3vh 5vw
 	z-index 100
@@ -26,9 +27,11 @@
 
 	&__container
 		max-height 100%
+		max-width 100%
 		display flex
 		justify-content center
 		align-items stretch
+		flex-wrap wrap
 		position relative
 		z-index 2
 		cursor default
@@ -36,20 +39,18 @@
 		overflow hidden
 
 	&__image-container
-
+		max-height 90vh
+		max-width 100%
 		position relative
 		display flex
 		flex-direction column
 		align-items center
 		justify-content center
-		flex-basis 70%
-		flex-shrink 2
 		flex-grow 1
 		background #1e1e1e
 
 
 	&__image-wrap
-		position relative
 		margin-top auto
 		display flex
 		align-items center
@@ -58,7 +59,6 @@
 		height 100%
 		max-width 100%
 		max-height 100%
-
 
 		&:hover
 			.b-photo__prev, .b-photo__next
@@ -80,6 +80,52 @@
 			display inline-block
 			vertical-align middle
 			height 100%
+
+	@keyframes progress-dot_anim
+		0%
+			opacity: 0.2
+
+		30%
+			opacity: 1
+
+		to
+			opacity: 0.2
+
+
+	&__progress
+		height 100%
+		width 100%
+		position absolute
+		display flex
+		align-items center
+		justify-content center
+
+	&__progress-dot
+		transform translateZ(0)
+		background-color #fff
+		height 6px
+		width 6px
+		margin-right 4px
+		display inline-block
+		vertical-align top
+		border-radius 50%
+		opacity 0.2
+		animation-duration: 750ms
+		animation-name progress-dot_anim
+		animation-iteration-count infinite
+
+		&:last-child
+			margin-right 0
+
+		&:nth-child(1)
+			animation-delay 0ms
+
+		&:nth-child(2)
+			animation-delay 180ms
+
+		&:nth-child(3)
+			animation-delay 360ms
+
 
 	&__image
 		display inline-block
@@ -146,9 +192,10 @@
 
 	&__sidebar
 		display flex
+		flex-grow 1
 		flex-direction column
 		background-color white
-		min-width 300px
+		min-width 280px
 		flex-shrink 0
 		border-radius 0 4px 4px 0
 
@@ -368,6 +415,7 @@
 
 
 	&__comment-container
+		width 100%
 		margin-left 10px
 
 	&__comment-avatar
