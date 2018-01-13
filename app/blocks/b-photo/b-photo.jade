@@ -32,7 +32,8 @@ mixin b-photo()
 				+e.like-container
 					+e('button').like
 						+e.like-icon.fa.fa-heart
-						| Like
+						span Like
+						+e.like-counter
 
 				+e.comments
 					+e.comments-window
@@ -42,7 +43,7 @@ mixin b-photo()
 							+e('a').comment-avatar(href="#")
 								img(src="https://pp.userapi.com/c840128/v840128727/51e28/vtG-kSWN8Sw.jpg")
 							+e.comment-container
-								+e('a').comment-name(href="#") Svetlana Borshinskovskiska
+								+e('a').comment-name(href="#") Svetlana Borshinskovs
 								+e.comment-text Lorem ipsum chetotam test test testes tes
 								+e.comment-date Just now
 							+e('button').comment-like.fa.fa-heart
@@ -52,10 +53,10 @@ mixin b-photo()
 								+e('button').comment-delete.fa.fa-times
 
 
-				+e('form').post-box
+				+e('form').post-box(data-post-box="closed")
 					+e.message
 						+e.message-avatar
-						+e('textarea').message-text
+						+e('textarea').message-text(placeholder="Leave comment")
 
 					+e.submit
 						+e('label').file.fa.fa-file
