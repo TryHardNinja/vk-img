@@ -19,11 +19,42 @@ export default function () {
 	const img = $('.b-photo__image');
 	const imgWrap = $('.b-photo__image-wrapper');
 	const comments = $('.b-photo__comments-window');
+	const commentLike = $('.b-photo__comment-like');
+	const photoLike = $('.b-photo__like');
+	const messageBox = $('.b-photo__message');
+	const cancel = $('.b-photo__cancel');
+
 
 	let model = JsonSample;
 	let counter = 0;
 	let cacheHeight = img.height();
 	let cacheWidth = img.width();
+
+	function likeComment() {
+		const count = $('.b-photo__comment-like-count');
+		if (count.html()) {
+			count.html('');
+			commentLike.css('opacity', 0.5);
+		}
+		else {
+			count.html('1');
+			commentLike.css('opacity', 1);
+		}
+	}
+
+	function likePhoto() {
+		let count = $('.b-photo__like-counter');
+		console.log(count);
+		if (count.html()) {
+			count.html('');
+			photoLike.css('opacity', 0.5);
+		}
+		else {
+			count.html('1');
+			photoLike.css('opacity', 1);
+		}
+	}
+
 
 	function changeImage(action) {
 		let src;
@@ -61,6 +92,32 @@ export default function () {
 		});
 	}
 
+	function visionPostBox(action) {
+		const submitBox = $('.b-photo__submit');
+		if (action === 'open') {
+			submitBox.css('display', 'flex');
+			messageBox.css({
+				'min-height': '72px',
+				'padding-bottom': '16px'
+			});
+		} else {
+			submitBox.css('display', 'none');
+			messageBox.css({
+				'min-height': 0,
+				'padding-bottom': '10px'
+			});
+		}
+	}
+
+	messageBox.click(() => {
+		visionPostBox('open');
+	});
+
+	cancel.click((e) => {
+		e.preventDefault();
+		visionPostBox('close')
+	});
+
 	prev.click(() => {
 		changeImage('prev')
 	});
@@ -68,5 +125,13 @@ export default function () {
 	next.click(() => {
 		changeImage('next')
 	});
+
+	commentLike.click(() => {
+		likeComment();
+	});
+
+	photoLike.click(() => {
+		likePhoto();
+	})
 
 }
