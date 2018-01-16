@@ -1,6 +1,7 @@
 import $ from 'jquery';
 
-let JsonSample = {
+// Пример url картинок из альбома
+let jsonSample = {
 	img: [
 		'https://pp.userapi.com/c837324/v837324288/5a633/O7a67IPfTaQ.jpg',
 		'https://pp.userapi.com/c622820/v622820690/447be/QOGhlND-888.jpg',
@@ -12,62 +13,82 @@ let JsonSample = {
 		'http://img.playground.ru/images/4/7/yKp0f_H2dwI.jpg'
 	]
 };
+const prev = $('.b-photo__prev');
+const next = $('.b-photo__next');
+const img = $('.b-photo__image');
+const imgWrap = $('.b-photo__image-wrapper');
+const comments = $('.b-photo__comments-window');
+const commentLike = $('.b-photo__comment-like');
+const photoLike = $('.b-photo__like');
+const messageBox = $('.b-photo__message');
+const sidebar = $('.b-photo__sidebar');
+const cancel = $('.b-photo__cancel');
+const post = $('.b-photo__post');
 
-export default function () {
-	const prev = $('.b-photo__prev');
-	const next = $('.b-photo__next');
-	const img = $('.b-photo__image');
-	const imgWrap = $('.b-photo__image-wrapper');
-	const comments = $('.b-photo__comments-window');
-	const commentLike = $('.b-photo__comment-like');
-	const photoLike = $('.b-photo__like');
-	const messageBox = $('.b-photo__message');
-	const cancel = $('.b-photo__cancel');
+let counter = 0;
 
+let cacheHeight = img.height();
+let cacheWidth = img.width();
 
-	let model = JsonSample;
-	let counter = 0;
-	let cacheHeight = img.height();
-	let cacheWidth = img.width();
+export default class {
+	constructor(data = jsonSample) {
+		this._data = data;
+		this.model = this._data;
+	}
 
-	function likeComment() {
+	getImageSrc(counter) {
+		let delay = Math.floor(Math.random() * (100 - 10 + 1)) + 10;
+
+		return new Promise((resolve, reject) => {
+			setTimeout(() => { // имитация задержки ajax c сервера
+				let src = this.model.img[counter];
+				resolve(src);
+			}, delay)
+		});
+
+	}
+
+	likeComment() {
 		const count = $('.b-photo__comment-like-count');
 		if (count.html()) {
 			count.html('');
 			commentLike.css('opacity', 0.5);
+			commentLike.removeClass('like');
 		}
 		else {
 			count.html('1');
 			commentLike.css('opacity', 1);
+			commentLike.addClass('like');
 		}
 	}
 
-	function likePhoto() {
+	likePhoto() {
 		let count = $('.b-photo__like-counter');
-		console.log(count);
 		if (count.html()) {
 			count.html('');
 			photoLike.css('opacity', 0.5);
+			photoLike.removeClass('like');
 		}
 		else {
 			count.html('1');
 			photoLike.css('opacity', 1);
+			photoLike.addClass('like');
 		}
 	}
 
-
-	function changeImage(action) {
-		let src;
+	changeImage(action) {
+		this.visionPostBox('close');
 		if (action === 'prev') {
-			if (counter === 0) counter = model.img.length - 1;
+			if (counter === 0) counter = this.model.img.length - 1;
 			else counter--;
 		}
 		else {
-			if (counter === model.img.length - 1) counter = 0;
+			if (counter === this.model.img.length - 1) counter = 0;
 			else counter++;
 		}
-		const waitImgSize = new Promise( resolve => {
-			src = model.img[counter];
+
+		this.getImageSrc(counter).then(src => {
+			img.css('visibility', 'hidden');
 			img.attr('src', src);
 			img.load(() => {
 				let height = img.height();
@@ -75,63 +96,87 @@ export default function () {
 
 				cacheHeight = (height > cacheHeight) ? cacheHeight = height : cacheHeight;
 				cacheWidth = (width > cacheWidth) ? cacheWidth = width : cacheWidth;
-
-				resolve([height, width]);
+				return src;
 			});
-		});
-		waitImgSize.then((size) => {
-			console.log(size);
+		}).then(src => {
+			let delay = Math.floor(Math.random() * (500 - 50 + 1)) + 50;
 
-			imgWrap.css('height', cacheHeight);
-			imgWrap.css('width', cacheWidth);
-
-			src = model.img[counter];
-			img.attr('src', src);
-		}, () => {
-			console.log('error');
+			setTimeout(() => { // имитация загрузки изображения
+				img.css('visibility', 'visible');
+				imgWrap.css('height', cacheHeight);
+				imgWrap.css('width', cacheWidth);
+				img.attr('src', src);
+			}, delay);
 		});
 	}
 
-	function visionPostBox(action) {
+	visionPostBox(action) {
+		let postBox = $('.b-photo__post-box');
+
 		const submitBox = $('.b-photo__submit');
-		if (action === 'open') {
+		let open = () => {
 			submitBox.css('display', 'flex');
 			messageBox.css({
 				'min-height': '72px',
 				'padding-bottom': '16px'
 			});
-		} else {
+		};
+		let close = () => {
 			submitBox.css('display', 'none');
 			messageBox.css({
 				'min-height': 0,
 				'padding-bottom': '10px'
 			});
+		};
+
+		if (action === 'open') open();
+		if (action === 'close') close();
+		else {
+			let target = action.toElement;
+			let warningElems = postBox.find('*');
+			let targetElems = $(target).find('*');
+
+			if ([...targetElems].some( elem => ![...warningElems].includes(elem))) {
+				close();
+			}
 		}
 	}
 
-	messageBox.click(() => {
-		visionPostBox('open');
-	});
+	init() {
+		$('.b-photo').click((e) => {
+			this.visionPostBox(e);
+		});
 
-	cancel.click((e) => {
-		e.preventDefault();
-		visionPostBox('close')
-	});
+		messageBox.click(() => {
+			this.visionPostBox('open');
+		});
 
-	prev.click(() => {
-		changeImage('prev')
-	});
+		post.click(e => {
+			e.preventDefault();
+		});
 
-	next.click(() => {
-		changeImage('next')
-	});
+		cancel.click((e) => {
+			e.preventDefault();
+			this.visionPostBox('close')
+		});
 
-	commentLike.click(() => {
-		likeComment();
-	});
+		prev.click(() => {
+			this.changeImage('prev')
+		});
 
-	photoLike.click(() => {
-		likePhoto();
-	})
+		next.click(() => {
+			this.changeImage('next')
+		});
 
-}
+		commentLike.click(() => {
+			this.likeComment();
+		});
+
+		photoLike.click(() => {
+			this.likePhoto();
+		})
+	}
+};
+
+
+

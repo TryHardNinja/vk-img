@@ -26,9 +26,10 @@
 		background-color rgba(0, 0, 0, .5)
 
 	&__container
+		flex-grow 1
 		max-height 1080px
 		max-width 1920px
-		width 100%
+		min-height 60vh
 		height 100%
 		display flex
 		justify-content center
@@ -41,6 +42,7 @@
 		overflow hidden
 
 	&__image-container
+		flex-grow 1
 		max-width 100%
 		min-height 480px
 		max-height 90vh
@@ -51,7 +53,6 @@
 		justify-content center
 		flex-basis 58%
 		flex-shrink 2
-		flex-grow 1
 		background #1e1e1e
 
 	&__image-wrap
@@ -71,6 +72,7 @@
 
 	&__image-wrapper
 		flex-grow 1
+		// width 100%
 		max-width 100%
 		max-height 100%
 		position relative
@@ -98,6 +100,8 @@
 		height 100%
 		width 100%
 		position absolute
+		top 0
+		left 0
 		display flex
 		align-items center
 		justify-content center
@@ -142,11 +146,14 @@
 		justify-content space-between
 		padding 17px 23px 14px
 		min-height 18px
+		position relative
+		z-index 1
 
 	&__prev, &__next
 		display flex
 		align-items center
 		position absolute
+		top 0
 		background none
 		border none
 		height 100%
@@ -197,7 +204,6 @@
 		flex-direction column
 		background-color white
 		width 280px
-		flex-shrink 0
 		border-radius 0 4px 4px 0
 
 	/*	@media (max-width 700px)
@@ -274,7 +280,10 @@
 		color #939699
 
 	&__like-container
-		padding 25px 20px
+		display flex
+		align-items center
+		justify-content flex-start
+		padding 13px 20px 10px 15px
 
 	&__like
 		display flex
@@ -286,6 +295,10 @@
 		color #2a5885
 		transition all 0.2s ease
 		opacity .5
+		padding 5px 7px
+		&:hover
+			background-color #e7ebf0
+
 
 	&__like-icon
 		margin-right 6px

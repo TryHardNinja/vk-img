@@ -11,6 +11,9 @@ import nano from 'gulp-cssnano';
 import rename from 'gulp-rename';
 import sourcemaps from 'gulp-sourcemaps';
 import errorHandler from 'gulp-plumber-error-handler';
+import postcss from 'gulp-postcss';
+import flexie from 'postcss-flexibility';
+import flexBug from 'postcss-flexbugs-fixes';
 
 const isDebug = process.env.NODE_ENV !== 'production';
 
@@ -26,6 +29,7 @@ gulp.task('styles', () => (
 			],
 			'include css': true
 		}))
+		.pipe(postcss([flexBug, flexie]))
 		.pipe(gulpIf(!isDebug, gcmq()))
 		.pipe(gulpIf(!isDebug, nano({zindex: false})))
 		.pipe(rename({suffix: '.min'}))
@@ -37,7 +41,7 @@ gulp.task('styles:lint', () => (
 	gulp.src(['app/**/*.styl', '!app/styles/**'])
 		.pipe(stylint({
 			reporter: 'stylint-stylish',
-			reporterOptions: {verbose: true}
+			reporterOptions: {verbose: false}
 		}))
 		.pipe(stylint.reporter())
 		.pipe(stylint.reporter('fail', {failOnWarning: false}))
