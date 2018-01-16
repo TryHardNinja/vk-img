@@ -13,6 +13,8 @@ let jsonSample = {
 		'http://img.playground.ru/images/4/7/yKp0f_H2dwI.jpg'
 	]
 };
+const photoBlock = $('.b-photo');
+const photoBlockContainer = $('.b-photo__container');
 const prev = $('.b-photo__prev');
 const next = $('.b-photo__next');
 const img = $('.b-photo__image');
@@ -52,13 +54,11 @@ export default class {
 		const count = $('.b-photo__comment-like-count');
 		if (count.html()) {
 			count.html('');
-			commentLike.css('opacity', 0.5);
-			commentLike.removeClass('like');
+			commentLike.removeClass('.b-photo__comment-like_liked');
 		}
 		else {
 			count.html('1');
-			commentLike.css('opacity', 1);
-			commentLike.addClass('like');
+			commentLike.addClass('.b-photo__comment-like_liked');
 		}
 	}
 
@@ -66,13 +66,11 @@ export default class {
 		let count = $('.b-photo__like-counter');
 		if (count.html()) {
 			count.html('');
-			photoLike.css('opacity', 0.5);
-			photoLike.removeClass('like');
+			photoLike.removeClass('b-photo__like_liked');
 		}
 		else {
 			count.html('1');
-			photoLike.css('opacity', 1);
-			photoLike.addClass('like');
+			photoLike.addClass('b-photo__like_liked');
 		}
 	}
 
@@ -143,6 +141,11 @@ export default class {
 	}
 
 	init() {
+
+		if (navigator.appName == 'Microsoft Internet Explorer' ||  !!(navigator.userAgent.match(/Trident/) || navigator.userAgent.match(/rv:11/)) || (typeof $.browser !== "undefined" && $.browser.msie == 1)) {
+			$('html').addClass('ie');
+		}
+
 		$('.b-photo').click((e) => {
 			this.visionPostBox(e);
 		});

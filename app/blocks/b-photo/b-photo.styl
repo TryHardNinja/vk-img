@@ -1,11 +1,9 @@
 .b-photo
 	display flex
-	justify-content center
 	align-items center
-	position absolute
-	min-width 320px
-	min-height 100%
-	width 100%
+	justify-content center
+	position relative
+	min-height inherit
 	padding 3vh 5vw
 	z-index 100
 	font-size 13px
@@ -26,23 +24,24 @@
 		background-color rgba(0, 0, 0, .5)
 
 	&__container
+		margin-top auto
+		margin-bottom auto
+		position relative
+		z-index 2
 		flex-grow 1
-		max-height 1080px
-		max-width 1920px
-		min-height 60vh
-		height 100%
+		max-width 960px
+		min-width 300px
+		width 90%
+		border-radius 6px 4px 4px 4px
+		overflow hidden
 		display flex
 		justify-content center
 		align-items stretch
 		flex-wrap wrap
-		position relative
-		z-index 2
 		cursor default
-		border-radius 6px 4px 4px 4px
-		overflow hidden
 
 	&__image-container
-		flex-grow 1
+		flex-grow 100
 		max-width 100%
 		min-height 480px
 		max-height 90vh
@@ -51,7 +50,7 @@
 		flex-direction column
 		align-items center
 		justify-content center
-		flex-basis 58%
+		flex-basis 50%
 		flex-shrink 2
 		background #1e1e1e
 
@@ -62,8 +61,7 @@
 		justify-content center
 		overflow hidden
 		height 100%
-		max-width 100%
-		max-height 100%
+		width 100%
 
 		&:hover
 			.b-photo__prev, .b-photo__next
@@ -71,20 +69,36 @@
 					opacity 0.3
 
 	&__image-wrapper
-		flex-grow 1
-		// width 100%
+		position relative
 		max-width 100%
 		max-height 100%
-		position relative
-		vertical-align middle
 		text-align center
 		font-size 0
 
 		&::before
-			content: ''
+			content ''
 			display inline-block
-			vertical-align middle
 			height 100%
+			vertical-align middle
+
+	&__image
+		display inline-block
+		vertical-align middle
+		max-width 100%
+		max-height 100%
+
+
+	&__image-footer
+		width 100%
+		margin-top auto
+		display flex
+		justify-content space-between
+		padding 17px 23px 14px
+		min-height 18px
+		position relative
+		z-index 1
+
+
 
 	@keyframes progress-dot_anim
 		0%
@@ -132,22 +146,6 @@
 		&:nth-child(3)
 			animation-delay 360ms
 
-	&__image
-		display inline-block
-		vertical-align middle
-		max-width 100%
-		max-height 100%
-		margin 0 auto
-
-	&__image-footer
-		width 100%
-		margin-top auto
-		display flex
-		justify-content space-between
-		padding 17px 23px 14px
-		min-height 18px
-		position relative
-		z-index 1
 
 	&__prev, &__next
 		display flex
@@ -201,8 +199,10 @@
 	&__sidebar
 		display flex
 		flex-grow 1
+		flex-shrink 0
 		flex-direction column
 		background-color white
+		min-width 280px //fix for ie
 		width 280px
 		border-radius 0 4px 4px 0
 
@@ -299,6 +299,8 @@
 		&:hover
 			background-color #e7ebf0
 
+	&__like_liked
+		opacity 1
 
 	&__like-icon
 		margin-right 6px
@@ -422,6 +424,7 @@
 		margin-left 10px
 
 	&__comment
+		position relative
 		display flex
 		justify-content space-between
 		align-items flex-start
@@ -435,10 +438,22 @@
 				opacity 1
 
 	&__comment-container
+		display flex
+		align-items center
+		position relative
+		width 100%
+
+	&__comment-inf
+		display flex
+		flex-direction: column;
+		justify-content: flex-start;
 		width 100%
 		margin-left 10px
+		position relative
+
 
 	&__comment-avatar
+		align-self flex-start
 		height 34px
 		width 34px
 		overflow hidden
@@ -462,7 +477,9 @@
 		color #939393
 
 	&__comment-like
-		position relative
+		position absolute
+		right 0
+		bottom 0
 		display flex
 		align-items center
 		justify-content space-between
@@ -474,6 +491,9 @@
 		opacity .5
 		transition all 0.2s ease
 
+	&__comment-like_liked
+		opacity .5
+
 	&__comment-like-count
 		margin-left 4px
 		font-weight 700
@@ -483,6 +503,7 @@
 	&__comment-action
 		position absolute
 		right 0
+		top 0
 		display flex
 		justify-content space-between
 		align-items center

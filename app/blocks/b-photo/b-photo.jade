@@ -40,17 +40,18 @@ mixin b-photo()
 						// +e.no-comments
 							| Be the first to comment on this photo.
 						+e.comment
-							+e('a').comment-avatar(href="#")
-								img(src="https://pp.userapi.com/c840128/v840128727/51e28/vtG-kSWN8Sw.jpg")
 							+e.comment-container
-								+e('a').comment-name(href="#") Svetlana Borshinskovs
-								+e.comment-text Lorem ipsum chetotam test test testes tes
-								+e.comment-date Just now
-							+e('button').comment-like.fa.fa-heart
-								+e.comment-like-count
-							+e.comment-action
-								+e('button').comment-edit.fa.fa-pencil
-								+e('button').comment-delete.fa.fa-times
+								+e('a').comment-avatar(href="#")
+									img(src="https://pp.userapi.com/c840128/v840128727/51e28/vtG-kSWN8Sw.jpg")
+								+e.comment-inf
+									+e('a').comment-name(href="#") Svetlana Borshinskovs
+									+e.comment-text Lorem ipsum chetotam test test testes tes
+									+e.comment-date Just now
+								+e('button').comment-like.fa.fa-heart
+									+e.comment-like-count
+								+e.comment-action
+									+e('button').comment-edit.fa.fa-pencil
+									+e('button').comment-delete.fa.fa-times
 
 
 				+e('form').post-box(data-post-box="closed" tabindex=0)
