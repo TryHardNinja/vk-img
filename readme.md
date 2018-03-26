@@ -1,4 +1,6 @@
 # CSSSR Project Template
+
+[![Greenkeeper badge](https://badges.greenkeeper.io/TryHardNinja/vk-img.svg)](https://greenkeeper.io/)
 **Шаблон проекта для быстрого старта**
 
 
